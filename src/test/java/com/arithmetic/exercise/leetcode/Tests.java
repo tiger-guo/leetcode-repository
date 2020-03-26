@@ -4,6 +4,8 @@ import com.arithmetic.exercise.leetcode.dataStruct.TreeNode;
 import com.arithmetic.exercise.testData.TreeNodeData;
 import org.junit.Test;
 
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 import java.util.LinkedList;
 
 /**
@@ -14,20 +16,29 @@ import java.util.LinkedList;
  **/
 
 public class Tests {
-
-    @Test
-    public void test() {
-        TreeNode root = TreeNodeData.getData1();
-        Codec codec = new Codec();
-        String serializeRes = codec.serialize(root);
-        root = codec.deserialize(serializeRes);
-        System.out.println(codec.serialize(root));
-    }
-
-    @Test
-    public void test2() {
-        String data = "[]";
-        Codec codec = new Codec();
-        System.out.println(codec.deserialize(data));
+    public static void main(String[] args) throws NoSuchMethodException, InvocationTargetException, IllegalAccessException {
+        Class classz = Son.class;
+        Method method = classz.getMethod("ageIncrement");
+        method.invoke(new Son(), null);
     }
 }
+
+class Parent{
+    static int age = 0;
+    static String name = null;
+
+
+    public static void ageIncrement(){
+        age = 1;
+    }
+
+}
+
+class Son extends Parent{
+
+    public static void ageIncrement() {
+        name = "haha";
+        System.out.println(name);
+    }
+}
+
